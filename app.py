@@ -27,4 +27,7 @@ def calculate():
     else:
         error = "Can't reach the currency"
         return render_template("index.html", error=error)
-
+    
+@app.route("/version")
+def version():
+    return render_template("version.html")

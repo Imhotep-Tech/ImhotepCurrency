@@ -367,14 +367,14 @@
             </tr>
             <tr>
                 <td class="centered-button" colspan="3">
-                    <input type="submit" value="Calculate">
+                    <input type="submit" value="Calculate" style="background-color: #212529; color: #F5C242;">
                 </td>
             </tr>
         </form>
         </table>
         <h1 class="centered">{{ result }}</h1>
         <form action="/" method="GET" style="text-align: center;">
-            <input type="submit" value="reset" class="centered">
+            <input type="submit" value="reset" class="centered" style="background-color: #212529; color: #F5C242;">
         </form>
     </body>
     <script>
@@ -411,4 +411,5 @@
         });
         
     </script>
+    {% include 'footer.html' %}
     </html>
