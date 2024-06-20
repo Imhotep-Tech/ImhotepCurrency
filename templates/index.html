@@ -21,6 +21,10 @@
             <tr>
                 <th>
                     <form action="/calculate" method="POST">
+                    <label for="amount">Amount:</label>
+                    <input type="number" name="amount" class="input" required>
+                </th>
+                <th>
                         <input type="text" id="searchInput1" placeholder="Search Currency" class="input">
                         <select name="from_currency" id="CurrencySelect1" class="input" required="">
                             <option disabled selected>From Currency</option>
@@ -193,6 +197,9 @@
                         </select>
                 </th>
                 <th>
+                    <h1>>>></h1>
+                </th>
+                <th>
                         <input type="text" id="searchInput2" placeholder="Search Currency" class="input">
                         <select name="to_currency" id="CurrencySelect2" class="input" required="">
                             <option disabled selected>To Currency</option>
@@ -363,10 +370,6 @@
                             <option value="ZMW">ZMW</option>
                             <option value="ZWL">ZWL</option>
                         </select>
-                </th>
-                <th>
-                    <label for="amount">Amount:</label>
-                    <input type="number" name="amount" class="input" required>
                 </th>
             </tr>
             <tr>

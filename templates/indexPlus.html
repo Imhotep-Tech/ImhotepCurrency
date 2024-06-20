@@ -32,6 +32,10 @@
             <tr>
                 <th>
                     <form action="/calculate" method="POST">
+                    <label for="amount">Amount:</label>
+                    <input type="number" name="amount" class="input" required placeholder="{{amount_placeholder}}">
+                </th>
+                <th>
                         <input type="text" id="searchInput1" placeholder="Search Currency" class="input">
                         <select name="from_currency" id="CurrencySelect1" style="padding: 5px; border-radius: 1rem;" required="">
                             <option selected value="{{from_currency_placeholder}}">{{ from_currency_placeholder }}</option>
@@ -202,6 +206,11 @@
                             <option value="ZMW">ZMW</option>
                             <option value="ZWL">ZWL</option>
                         </select>
+                </th>
+                <th>
+                    <h1>
+                        >>>
+                    </h1>
                 </th>
                 <th>
                         <input type="text" id="searchInput2" placeholder="Search Currency" class="input">
@@ -375,10 +384,6 @@
                             <option value="ZWL">ZWL</option>
                         </select>
                 </th>
-                <th>
-                    <label for="amount">Amount:</label>
-                    <input type="number" name="amount" class="input" required placeholder="{{amount_placeholder}}">
-                </th>
             </tr>
             <tr>
                 <td class="centered-button" colspan="3">
@@ -388,7 +393,7 @@
         </form>
         </table>
         <br>
-        <div class="result-box">{{ result }}</div>
+        <div class="result-box">{{ res }}</div>
         <br>
         <form action="/" method="GET" style="text-align: center;">
             <input type="submit" value="reset" class="centered" style="background-color: #212529; color: #F5C242;">

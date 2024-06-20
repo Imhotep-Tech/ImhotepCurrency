@@ -23,7 +23,8 @@ def calculate():
     if response.status_code == 200:
         rate = data["conversion_rates"][to_currency]
         result = amount * rate
-        return render_template("indexPlus.html", result=result, from_currency_placeholder= from_currency_placeholder, to_currency_placeholder=to_currency_placeholder, amount_placeholder=amount_placeholder)
+        res = f"{result:,}"
+        return render_template("indexPlus.html", res=res, from_currency_placeholder= from_currency_placeholder, to_currency_placeholder=to_currency_placeholder, amount_placeholder=amount_placeholder)
     else:
         error = "Can't reach the currency"
         return render_template("index.html", error=error)
