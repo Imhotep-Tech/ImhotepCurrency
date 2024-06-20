@@ -385,34 +385,44 @@
         const searchInput2 = document.getElementById('searchInput2');
         const currencySelect1 = document.getElementById('CurrencySelect1');
         const currencySelect2 = document.getElementById('CurrencySelect2');
-    
-        // Function to filter options based on user input
-        function filterOptions(searchInput, currencySelect) {
+
+        // Store the original options for both selects
+        const originalOptions1 = [...currencySelect1.options];
+        const originalOptions2 = [...currencySelect2.options];
+
+        function filterOptions(searchInput, currencySelect, originalOptions) {
             const searchText = searchInput.value.toLowerCase();
-            const options = [...currencySelect.options];
-    
-            const filteredOptions = options.filter(option => {
+            currencySelect.innerHTML = ''; // Clear previous options
+
+            // Filter from original options
+            const filteredOptions = originalOptions.filter(option => {
                 const optionText = option.textContent.toLowerCase();
                 return optionText.includes(searchText);
             });
-    
-            currencySelect.innerHTML = ''; // Clear previous options
-    
+
             // Add filtered options to the select dropdown
             filteredOptions.forEach(option => {
                 currencySelect.appendChild(option);
             });
+
+            // If no options match the filter, re-add the default disabled option
+            if (filteredOptions.length === 0) {
+                const defaultOption = document.createElement('option');
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                defaultOption.textContent = 'No Match';
+                currencySelect.appendChild(defaultOption);
+            }
         }
-    
+
         // Event listeners for the input fields
         searchInput1.addEventListener('input', () => {
-            filterOptions(searchInput1, currencySelect1);
+            filterOptions(searchInput1, currencySelect1, originalOptions1);
         });
-    
+
         searchInput2.addEventListener('input', () => {
-            filterOptions(searchInput2, currencySelect2);
+            filterOptions(searchInput2, currencySelect2, originalOptions2);
         });
-        
     </script>
         {% include 'footer.html' %}
     </html>
