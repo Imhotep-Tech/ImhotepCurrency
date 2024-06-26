@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, jsonify
+from flask_sitemap import Sitemap
 import requests
 
 app = Flask(__name__)
-
+ext = Sitemap(app=app)
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -32,3 +33,23 @@ def calculate():
 @app.route("/version")
 def version():
     return render_template("version.html")
+
+@app.route('/sitemap.xml')
+def sitemap():
+    from flask import Response, request, make_response
+    import datetime
+    pages = []
+
+    # Static pages
+    ten_days_ago = (datetime.datetime.now() - datetime.timedelta(days=10)).date().isoformat()
+    for rule in app.url_map.iter_rules():
+        if "GET" in rule.methods and len(rule.arguments) == 0:
+            pages.append(
+                ["https://imhotepcc.vercel.app" + str(rule.rule), ten_days_ago]
+            )
+
+    sitemap_xml = render_template('sitemap_template.xml', pages=pages)
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+
+    return response
