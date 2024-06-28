@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 from flask_sitemap import Sitemap
 import requests
+import datetime
 
 app = Flask(__name__)
 ext = Sitemap(app=app)
@@ -36,8 +37,6 @@ def version():
 
 @app.route('/sitemap.xml')
 def sitemap():
-    from flask import Response, request, make_response
-    import datetime
     pages = []
 
     # Static pages
