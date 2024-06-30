@@ -15,6 +15,11 @@
     </head>
     <body class="bg-color">
         <h1 class="centered">Imhotep Currency Calculator</h1>
+        {% if error %}
+            <div class="error-message">
+                {{ error }} 
+            </div>
+        {% endif %}
         <br><br>
         <div class="centered">
             <img src="{{ url_for('static', filename='_9b6a6904-b6cd-416b-88b1-ba3d981c9fed.jpeg') }}" height="200" width="auto" alt="Imhotep Currency">
@@ -27,7 +32,10 @@
                     <label for="amount">Amount:</label>
                     <input type="number" name="amount" class="input" required>
                 </th>
+                </tr>
+                <tr>
                 <th>
+                    <label for="amount">Currency:</label>
                         <input type="text" id="searchInput1" placeholder="Search Currency" class="input">
                         <select name="from_currency" id="CurrencySelect1" class="input" required="">
                             <option disabled selected>From Currency</option>
@@ -199,10 +207,10 @@
                             <option value="ZWL">ZWL</option>
                         </select>
                 </th>
+                    </tr>
+                    <tr>
                 <th>
-                    <h1>>>></h1>
-                </th>
-                <th>
+                    <label for="amount">Target Currency:</label>
                         <input type="text" id="searchInput2" placeholder="Search Currency" class="input">
                         <select name="to_currency" id="CurrencySelect2" class="input" required="">
                             <option disabled selected>To Currency</option>

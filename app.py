@@ -14,7 +14,11 @@ def calculate():
     from_currency = request.form.get("from_currency")
     to_currency = request.form.get("to_currency")
     amount = float(request.form.get("amount"))
-
+    
+    if from_currency is None or to_currency is None or amount is None:
+        error = "You have to fill all of the inputs!"
+        return render_template("index.html", error=error)
+    
     from_currency_placeholder = from_currency
     to_currency_placeholder = to_currency
     amount_placeholder = amount

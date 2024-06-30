@@ -30,6 +30,11 @@
     </head>
     <body class="bg-color">
         <h1 class="centered">Currency Calculator</h1>
+        {% if error %}
+            <div class="error-message">
+                {{ error }} 
+            </div>
+        {% endif %}
         <br><br>
 
         <table class="centered">
@@ -39,6 +44,8 @@
                     <label for="amount">Amount:</label>
                     <input type="number" name="amount" class="input" required placeholder="{{amount_placeholder}}">
                 </th>
+            </tr>
+            <tr>
                 <th>
                         <input type="text" id="searchInput1" placeholder="Search Currency" class="input">
                         <select name="from_currency" id="CurrencySelect1" style="padding: 5px; border-radius: 1rem;" required="">
@@ -211,11 +218,8 @@
                             <option value="ZWL">ZWL</option>
                         </select>
                 </th>
-                <th>
-                    <h1>
-                        >>>
-                    </h1>
-                </th>
+            </tr>
+            <tr>
                 <th>
                         <input type="text" id="searchInput2" placeholder="Search Currency" class="input">
                         <select name="to_currency" id="CurrencySelect2" style="padding: 5px; border-radius: 1rem;" required="">
