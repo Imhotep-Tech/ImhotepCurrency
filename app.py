@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, make_response
+from flask import Flask, render_template, request, jsonify, make_response, send_from_directory
 from flask_sitemap import Sitemap
 import requests
 import datetime
@@ -56,3 +56,7 @@ def sitemap():
     response.headers["Content-Type"] = "application/xml"
 
     return response
+
+@app.route('/static/<path:filename>')
+def custom_static(filename):
+    return send_from_directory('static', filename)
