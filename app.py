@@ -56,7 +56,3 @@ def sitemap():
     response.headers["Content-Type"] = "application/xml"
 
     return response
-
-@app.route('/static/_9b6a6904-b6cd-416b-88b1-ba3d981c9fed.ico')
-def custom_static():
-    return send_from_directory('static', '_9b6a6904-b6cd-416b-88b1-ba3d981c9fed.ico')
