@@ -14,7 +14,6 @@
         <meta name="keywords" content="currency, converter, exchange rates, Imhotep Currency Converter">
     <style>
         body {
-    text-align: center;
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -76,7 +75,11 @@ img {
 
     </style>
     </head>
-    <body style="text-align:center ;">
+    <body>
+        <div class="left-aligned">
+            <button onclick="history.back()" class="btn-black">Back</button>
+        </div>
+        <div style="text-align:center ;">
             <a href="https://www.amazon.com/dp/B0D9SX43Q4/ref=apps_sf_sta" style="color: #986f07;">
                 <img src="{{ url_for('static', filename='amazon.png') }}" height="50" width="auto" alt="Android Amazon Download">
             </a>
@@ -89,14 +92,13 @@ img {
 
             <br>
 
+            <a id="installButton" href="#" style="color: #986f07;">PC PWA Download</a>
+
+            <br>
+            
             <a id="iosInstall" href="#" style="color: #986f07;">
                 <img src="{{ url_for('static', filename='ios.jpg') }}" height="70" width="auto" alt="Add to Home Screen on iOS">
             </a>
-            
-            <br>
-
-            <a id="installButton" href="#" style="color: #986f07;">PC PWA Download</a>
-
         <div class="ios-instructions" id="iosInstructions">
             <p>To add this app to your home screen on iOS:</p>
             <ol>
@@ -104,6 +106,7 @@ img {
                 <li>Select "Add to Home Screen" from the options.</li>
             </ol>
         </div>
+    </div>
     </body>
     <script>
         let deferredPrompt;
