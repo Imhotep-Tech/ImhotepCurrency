@@ -1,45 +1,63 @@
 <footer>
     <style>
-            .bg-color{
-                background-color: #D9D9D9;
-                color: #986f07;
-            }
-            footer {
-        padding: 20px;
-        background-color: #f1f1f1;
-    }
-    
-    .centered {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .footer-links {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .footer-links a {
-        color: #986f07;
-        text-decoration: none;
-        padding: 5px;
-    }
-    
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
+        .bg-color {
+            background-color: #D9D9D9;
+            color: #986f07;
+        }
+
+        footer {
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+        .centered {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: #986f07;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .ios-instructions {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
     </style>
     <br>
     <br>
     <div class="centered">
         © 2023-2024 Copyright: <a href="https://imhoteptech.vercel.app" style="color: black;">Imhotep tech</a><br>
-         <a href="/version" style="color: #986f07;">Version: 2.0<br></a>
+        <a href="/version" style="color: #986f07;">Version: 2.0<br></a>
     </div>
     <div class="footer-links">
         <a id="androidDownload" href="https://www.amazon.com/dp/B0D9SX43Q4/ref=apps_sf_sta" style="color: #986f07;">Android Amazon Download</a>
-        <a id="androidDownload" href="https://github.com/Kbassem10/ICC-APK/releases/tag/V-2.0" style="color: #986f07;">Github Apk Download</a>
-        <a id="installButton" href="#" style="color: #986f07; display: block;">PWA Download</a>
+        <a id="githubDownload" href="https://github.com/Kbassem10/ICC-APK/releases/tag/V-2.0" style="color: #986f07;">Github Apk Download</a>
+        <a id="installButton" href="#" style="color: #986f07; display: none;">PWA Download</a>
+        <a id="iosInstall" href="#" style="color: #986f07; display: none;">Add to Home Screen on iOS</a>
+    </div>
+    <div class="ios-instructions" id="iosInstructions">
+        <p>To add this app to your home screen on iOS:</p>
+        <ol>
+            <li>Tap the Share button at the bottom of the Safari browser.</li>
+            <li>Select "Add to Home Screen" from the options.</li>
+        </ol>
     </div>
 
     <script>
@@ -83,8 +101,25 @@
             });
         }
 
+        // Function to detect iOS
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        // Function to show iOS install instructions
+        function showIOSInstallInstructions() {
+            if (isIOS()) {
+                document.getElementById('iosInstall').style.display = 'block';
+                document.getElementById('iosInstall').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('iosInstructions').style.display = 'block';
+                });
+            }
+        }
+
         // Call the functions on page load
         checkPWAInstalled();
         setupPWAInstallPrompt();
+        showIOSInstallInstructions();
     </script>
 </footer>
