@@ -7,10 +7,11 @@
     "theme_color": "#ffffff",
     "version": "2.0",
     "icons": [
-        {
-            "src": "icc.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
+      {
+        "src": "icc.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
     ]
-}
+  }
+  
