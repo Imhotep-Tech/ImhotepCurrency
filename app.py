@@ -23,8 +23,14 @@ def calculate():
     to_currency_placeholder = to_currency
     amount_placeholder = amount
 
-    response = requests.get(f"https://v6.exchangerate-api.com/v6/12644ad30490895a4ffd9844/latest/{from_currency}")
-    data = response.json()
+    try:
+        #kbassem102005
+        response = requests.get(f"https://v6.exchangerate-api.com/v6/12644ad30490895a4ffd9844/latest/{from_currency}")
+        data = response.json()
+    except:
+        #karimbassemj
+        response = requests.get(f"https://v6.exchangerate-api.com/v6/970289727569e4224d9109fc/latest/{from_currency}")
+        data = response.json()  
 
     if response.status_code == 200:
         rate = data["conversion_rates"][to_currency]

@@ -3,6 +3,56 @@
     <br>
     <div class="centered">
         © 2023-2024 Copyright: <a href="https://kbassem10.github.io/ImhotepTech/index.html" style="color: black;">Imhotep tech</a><br>
-         <a href="/version" style="color: #F5C242;">Version: 2.0<br></a>
+         <a href="/version" style="color: #986f07;">Version: 2.0<br></a>
     </div>
+    <div class="footer-links">
+        <a id="androidDownload" href="https://www.amazon.com/dp/B0D9SX43Q4/ref=apps_sf_sta" style="color: #986f07;">Android Download</a>
+        <a id="installButton" href="#" style="color: #986f07; display: block;">PWA Download</a>
+    </div>
+
+    <script>
+        let deferredPrompt;
+
+        // Function to check if PWA is installed
+        function checkPWAInstalled() {
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                // PWA is installed, hide the Android download link
+                document.getElementById('androidDownload').style.display = 'none';
+            } else {
+                // PWA is not installed, ensure the Android download link is visible
+                document.getElementById('androidDownload').style.display = 'block';
+            }
+        }
+
+        // Function to handle PWA installation prompt
+        function setupPWAInstallPrompt() {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+
+                // Show the install button
+                document.getElementById('installButton').style.display = 'block';
+
+                document.getElementById('installButton').addEventListener('click', () => {
+                    // Hide the install button
+                    document.getElementById('installButton').style.display = 'none';
+                    // Show the install prompt
+                    deferredPrompt.prompt();
+                    // Wait for the user to respond to the prompt
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the A2HS prompt');
+                        } else {
+                            console.log('User dismissed the A2HS prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            });
+        }
+
+        // Call the functions on page load
+        checkPWAInstalled();
+        setupPWAInstallPrompt();
+    </script>
 </footer>
