@@ -31,7 +31,8 @@
             text-decoration: underline;
         }
 
-        .ios-instructions {
+        .ios-instructions,
+        .android-instructions {
             display: none;
             text-align: center;
             padding: 10px;
@@ -44,82 +45,10 @@
     <br>
     <div class="centered">
         © 2023-2024 Copyright: <a href="https://imhoteptech.vercel.app" style="color: black;">Imhotep tech</a><br>
-        <a href="/version" style="color: #986f07;">Version: 2.0<br></a>
-    </div>
-    <div class="footer-links">
-        <a id="androidDownload" href="https://www.amazon.com/dp/B0D9SX43Q4/ref=apps_sf_sta" style="color: #986f07;">Android Amazon Download</a>
-        <a id="githubDownload" href="https://github.com/Kbassem10/ICC-APK/releases/tag/V-2.0" style="color: #986f07;">Github Apk Download</a>
-        <a id="installButton" href="#" style="color: #986f07; display: none;">PWA Download</a>
-        <a id="iosInstall" href="#" style="color: #986f07; display: none;">Add to Home Screen on iOS</a>
-    </div>
-    <div class="ios-instructions" id="iosInstructions">
-        <p>To add this app to your home screen on iOS:</p>
-        <ol>
-            <li>Tap the Share button at the bottom of the Safari browser.</li>
-            <li>Select "Add to Home Screen" from the options.</li>
-        </ol>
+        <a href="/version" style="color: #986f07;">Version: 2.0</a>
+        <a href="/download" title="Download">
+            <i class="fas fa-download"></i> Download
+        </a>
     </div>
 
-    <script>
-        let deferredPrompt;
-
-        // Function to check if PWA is installed
-        function checkPWAInstalled() {
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                // PWA is installed, hide the Android download link
-                document.getElementById('androidDownload').style.display = 'none';
-            } else {
-                // PWA is not installed, ensure the Android download link is visible
-                document.getElementById('androidDownload').style.display = 'block';
-            }
-        }
-
-        // Function to handle PWA installation prompt
-        function setupPWAInstallPrompt() {
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-
-                // Show the install button
-                document.getElementById('installButton').style.display = 'block';
-
-                document.getElementById('installButton').addEventListener('click', () => {
-                    // Hide the install button
-                    document.getElementById('installButton').style.display = 'none';
-                    // Show the install prompt
-                    deferredPrompt.prompt();
-                    // Wait for the user to respond to the prompt
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === 'accepted') {
-                            console.log('User accepted the A2HS prompt');
-                        } else {
-                            console.log('User dismissed the A2HS prompt');
-                        }
-                        deferredPrompt = null;
-                    });
-                });
-            });
-        }
-
-        // Function to detect iOS
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        }
-
-        // Function to show iOS install instructions
-        function showIOSInstallInstructions() {
-            if (isIOS()) {
-                document.getElementById('iosInstall').style.display = 'block';
-                document.getElementById('iosInstall').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.getElementById('iosInstructions').style.display = 'block';
-                });
-            }
-        }
-
-        // Call the functions on page load
-        checkPWAInstalled();
-        setupPWAInstallPrompt();
-        showIOSInstallInstructions();
-    </script>
 </footer>

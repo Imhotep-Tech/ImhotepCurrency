@@ -45,6 +45,10 @@ def calculate():
 def version():
     return render_template("version.html")
 
+@app.route("/download")
+def download():
+    return render_template("download.html")
+
 @app.route('/sitemap.xml')
 def sitemap():
     pages = []
