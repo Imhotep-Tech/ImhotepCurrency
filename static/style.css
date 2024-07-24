@@ -168,17 +168,3 @@ button.btn-black {
             font-size: 18px;
         }
     }
-
-    .footer-icons {
-        text-align: center;
-        padding: 20px;
-    }
-    .footer-icon {
-        margin: 0 10px;
-        color: #986f07; /* Change the color to your preference */
-        font-size: 24px; /* Adjust the size as needed */
-        text-decoration: none;
-    }
-    .footer-icon:hover {
-        color: #007bff; /* Change the hover color */
-    }
