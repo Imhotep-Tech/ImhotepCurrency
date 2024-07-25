@@ -36,12 +36,12 @@
         
     </head>
     <body class="bg-color">
-        <h1 class="centered">Currency Calculator</h1>
         {% if error %}
             <div class="error-message">
                 {{ error }} 
             </div>
         {% endif %}
+        {% include 'ads.html' %}
         <br><br>
 
         <table class="centered">
@@ -413,6 +413,7 @@
         <form action="/" method="GET" style="text-align: center;">
             <input type="submit" value="reset" class="centered" style="background-color: #212529; color: #986f07;">
         </form>
+        {% include 'ads.html' %}
     </body>
     <script>
         const searchInput1 = document.getElementById('searchInput1');
@@ -449,4 +450,5 @@
         
     </script>
     {% include 'footer.html' %}
+    {% include 'ads.html' %}
     </html>

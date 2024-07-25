@@ -32,6 +32,7 @@
         <div class="centered">
             <img src="{{ url_for('static', filename='icc.jpeg') }}" height="200" width="auto" alt="Imhotep Currency">
         </div>
+        {% include 'ads.html' %}
         <br><br>
         <table class="centered">
             <tr>
@@ -398,6 +399,7 @@
             </tr>
         </form>
         </table>
+        {% include 'ads.html' %}
     </body>
     <script>
         const searchInput1 = document.getElementById('searchInput1');
@@ -444,4 +446,5 @@
         });
     </script>
         {% include 'footer.html' %}
+        {% include 'ads.html' %}
     </html>
