@@ -18,6 +18,11 @@
         </style>
     </head>
     <body class="bg-color">
+        <!-- Loading Screen -->
+        <div id="loading-overlay">
+            <div class="loader"></div>
+            <p>Loading...</p>
+        </div>
         <div class="left-aligned">
             <button onclick="history.back()" class="btn-black">Back</button>
         </div>
@@ -67,4 +72,42 @@ Ready to simplify your currency conversions? Order today!
         </p>
         {% include 'ads.html' %}
     </body>
+    <script>
+                function showLoadingScreen() {
+            document.getElementById('loading-overlay').style.display = 'flex';
+        }
+
+        function hideLoadingScreen() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        }
+
+        // Show loading screen on form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    showLoadingScreen();
+                });
+            });
+        });
+
+        // Handle page load and unload
+        window.addEventListener('load', function() {
+            hideLoadingScreen(); // Ensure loading screen is hidden after initial load
+        });
+
+        window.addEventListener('beforeunload', function() {
+            showLoadingScreen(); // Show loading screen when navigating away
+        });
+
+        // Show loading screen when navigating back
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                showLoadingScreen();
+                setTimeout(function() {
+                    hideLoadingScreen();
+                }, 100); // Adjust delay if necessary
+            }
+        });
+    </script>
 </html>
