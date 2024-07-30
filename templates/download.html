@@ -115,22 +115,26 @@ img {
             <button onclick="history.back()" class="btn-black">Back</button>
         </div>
         <div style="text-align:center ;">
+            <h1>Android & PC & Mac</h1>
+            <a href="https://github.com/Kbassem10/ICC-APK/releases/tag/ICC" style="color: #986f07;">
+                <img src="{{ url_for('static', filename='github.png') }}" height="100" width="auto" alt="Github Download">
+            </a>
+
+            <br>
+            <a href="https://drive.google.com/drive/folders/18WzgnAXo3NyrKLs6R1iJk9X2kcOcujth?usp=drive_link" style="color: #986f07;">
+                <img src="{{ url_for('static', filename='googledrive.png') }}" height="50" width="auto" alt="Google Drive Download">
+            </a>
+            <br>
+            <h1>Android Only</h1>
             <a href="https://www.amazon.com/dp/B0D9SX43Q4/ref=apps_sf_sta" style="color: #986f07;">
                 <img src="{{ url_for('static', filename='amazon.png') }}" height="50" width="auto" alt="Android Amazon Download">
             </a>
 
             <br>
 
-            <a href="https://github.com/Kbassem10/ICC-APK/releases/tag/V-2.0" style="color: #986f07;">
-                <img src="{{ url_for('static', filename='github.png') }}" height="70" width="auto" alt="Github Apk Download">
-            </a>
 
             <br>
-
-            <a id="installButton" href="#" style="color: #986f07;">PC PWA Download</a>
-
-            <br>
-            
+            <h1>IOS</h1>
             <a id="iosInstall" href="#" style="color: #986f07;">
                 <img src="{{ url_for('static', filename='ios.jpg') }}" height="70" width="auto" alt="Add to Home Screen on iOS">
             </a>
@@ -145,29 +149,7 @@ img {
     {% include 'ads.html' %}
     </body>
     <script>
-        let deferredPrompt;
-
-        // Function to handle PWA installation prompt
-        function setupPWAInstallPrompt() {
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-
-                document.getElementById('installButton').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === 'accepted') {
-                            console.log('User accepted the A2HS prompt');
-                        } else {
-                            console.log('User dismissed the A2HS prompt');
-                        }
-                        deferredPrompt = null;
-                    });
-                });
-            });
-        }
-
+    
         // Function to show iOS install instructions
         function showIOSInstallInstructions() {
             document.getElementById('iosInstall').addEventListener('click', (e) => {
@@ -176,8 +158,6 @@ img {
             });
         }
 
-        // Call the functions on page load
-        setupPWAInstallPrompt();
         showIOSInstallInstructions();
         function showLoadingScreen() {
             document.getElementById('loading-overlay').style.display = 'flex';
