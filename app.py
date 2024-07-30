@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request, jsonify, make_response, send_from_directory
+from flask import Flask, render_template, request, make_response
 from flask_sitemap import Sitemap
 import requests
 import datetime
 
 app = Flask(__name__)
+
 ext = Sitemap(app=app)
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -28,6 +30,7 @@ def calculate():
         response = requests.get(f"https://v6.exchangerate-api.com/v6/12644ad30490895a4ffd9844/latest/{from_currency}")
         data = response.json()
     except:
+
         #karimbassemj
         response = requests.get(f"https://v6.exchangerate-api.com/v6/970289727569e4224d9109fc/latest/{from_currency}")
         data = response.json()  
