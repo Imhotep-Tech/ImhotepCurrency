@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, make_response
 from flask_sitemap import Sitemap
 import requests
 import datetime
+import os
 
 app = Flask(__name__)
 
@@ -24,15 +25,15 @@ def calculate():
     from_currency_placeholder = from_currency
     to_currency_placeholder = to_currency
     amount_placeholder = amount
-
+    primary_api_key = os.getenv('EXCHANGE_API_KEY_PRIMARY')
+    secondary_api_key = os.getenv('EXCHANGE_API_KEY_SECONDARY')
     try:
         #kbassem102005
-        response = requests.get(f"https://v6.exchangerate-api.com/v6/12644ad30490895a4ffd9844/latest/{from_currency}")
+        response = requests.get(f"https://v6.exchangerate-api.com/v6/{primary_api_key}/latest/{from_currency}")
         data = response.json()
     except:
-
         #karimbassemj
-        response = requests.get(f"https://v6.exchangerate-api.com/v6/970289727569e4224d9109fc/latest/{from_currency}")
+        response = requests.get(f"https://v6.exchangerate-api.com/v6/{secondary_api_key}/latest/{from_currency}")
         data = response.json()  
 
     if response.status_code == 200:
