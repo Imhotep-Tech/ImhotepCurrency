@@ -25,8 +25,8 @@ def calculate():
     from_currency_placeholder = from_currency
     to_currency_placeholder = to_currency
     amount_placeholder = amount
-    primary_api_key = os.getenv('EXCHANGE_API_KEY_PRIMARY')
-    secondary_api_key = os.getenv('EXCHANGE_API_KEY_SECONDARY')
+    primary_api_key = os.environ.get('EXCHANGE_API_KEY_PRIMARY')
+    secondary_api_key = os.environ.get('EXCHANGE_API_KEY_SECONDARY')
     try:
         #kbassem102005
         response = requests.get(f"https://v6.exchangerate-api.com/v6/{primary_api_key}/latest/{from_currency}")
