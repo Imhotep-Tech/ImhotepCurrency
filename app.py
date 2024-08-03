@@ -3,21 +3,26 @@ from flask_sitemap import Sitemap
 import requests
 import datetime
 import os
+import secrets
 
 app = Flask(__name__)
 
 ext = Sitemap(app=app)
 
+token = secrets.token_hex(16)
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", token = token)
 
 @app.route("/calculate", methods=["POST"])
 def calculate():
+    if request.form.get("token") != token:
+        return 'Invalid CSRF token', 400
+    
     from_currency = request.form.get("from_currency")
     to_currency = request.form.get("to_currency")
     amount = float(request.form.get("amount"))
-    
     if from_currency is None or to_currency is None or amount is None:
         error = "You have to fill all of the inputs!"
         return render_template("index.html", error=error)
@@ -40,10 +45,10 @@ def calculate():
         rate = data["conversion_rates"][to_currency]
         result = amount * rate
         res = f"{result:,}"
-        return render_template("indexPlus.html", res=res, from_currency_placeholder= from_currency_placeholder, to_currency_placeholder=to_currency_placeholder, amount_placeholder=amount_placeholder)
+        return render_template("indexPlus.html", res=res, from_currency_placeholder= from_currency_placeholder, to_currency_placeholder=to_currency_placeholder, amount_placeholder=amount_placeholder, token = token)
     else:
         error = "Can't reach the currency"
-        return render_template("index.html", error=error)
+        return render_template("index.html", error=error, token = token)
     
 @app.route("/version")
 def version():
@@ -69,4 +74,20 @@ def sitemap():
     response = make_response(sitemap_xml)
     response.headers["Content-Type"] = "application/xml"
 
+    return response
+
+@app.after_request
+def add_header(response):
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    return response
+
+@app.after_request
+def remove_csp_header(response):
+    if 'Content-Security-Policy' in response.headers:
+        del response.headers['Content-Security-Policy']
+    return response
+
+@app.after_request
+def set_content_type_options(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
     return response

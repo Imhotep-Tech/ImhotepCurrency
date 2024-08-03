@@ -81,6 +81,7 @@
             <tr>
                 <th>
                     <form action="/calculate" method="POST">
+                    <input type="hidden" name="token" value="{{ token }}">
                     <label for="amount">Amount:</label>
                     <input type="number" name="amount" class="input" required placeholder="{{amount_placeholder}}">
                 </th>
