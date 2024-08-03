@@ -3,23 +3,17 @@ from flask_sitemap import Sitemap
 import requests
 import datetime
 import os
-import secrets
 
 app = Flask(__name__)
 
 ext = Sitemap(app=app)
 
-token = secrets.token_hex(16)
-
 @app.route("/")
 def index():
-    return render_template("index.html", token = token)
+    return render_template("index.html")
 
 @app.route("/calculate", methods=["POST"])
-def calculate():
-    if request.form.get("token") != token:
-        return 'Invalid CSRF token', 400
-    
+def calculate():    
     from_currency = request.form.get("from_currency")
     to_currency = request.form.get("to_currency")
     amount = float(request.form.get("amount"))
@@ -45,10 +39,10 @@ def calculate():
         rate = data["conversion_rates"][to_currency]
         result = amount * rate
         res = f"{result:,}"
-        return render_template("indexPlus.html", res=res, from_currency_placeholder= from_currency_placeholder, to_currency_placeholder=to_currency_placeholder, amount_placeholder=amount_placeholder, token = token)
+        return render_template("indexPlus.html", res=res, from_currency_placeholder= from_currency_placeholder, to_currency_placeholder=to_currency_placeholder, amount_placeholder=amount_placeholder)
     else:
         error = "Can't reach the currency"
-        return render_template("index.html", error=error, token = token)
+        return render_template("index.html", error=error)
     
 @app.route("/version")
 def version():
