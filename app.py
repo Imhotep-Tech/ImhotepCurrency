@@ -3,10 +3,14 @@ from flask_sitemap import Sitemap
 import requests
 import datetime
 import os
+from flask_talisman import Talisman
+
 
 app = Flask(__name__)
 
 ext = Sitemap(app=app)
+
+Talisman(app)
 
 @app.route("/")
 def index():
@@ -27,11 +31,9 @@ def calculate():
     primary_api_key = os.environ.get('EXCHANGE_API_KEY_PRIMARY')
     secondary_api_key = os.environ.get('EXCHANGE_API_KEY_SECONDARY')
     try:
-        #kbassem102005
         response = requests.get(f"https://v6.exchangerate-api.com/v6/{primary_api_key}/latest/{from_currency}")
         data = response.json()
     except:
-        #karimbassemj
         response = requests.get(f"https://v6.exchangerate-api.com/v6/{secondary_api_key}/latest/{from_currency}")
         data = response.json()  
 
