@@ -1,21 +1,12 @@
-from flask import Flask, render_template, request, make_response, abort
+from flask import Flask, render_template, request, make_response
 from flask_sitemap import Sitemap
 import requests
 import datetime
 import os
-from flask_talisman import Talisman
-
 
 app = Flask(__name__)
 
 ext = Sitemap(app=app)
-
-Talisman(app)
-
-@app.before_request
-def block_metadata():
-    if request.remote_addr == '169.254.169.254':
-        abort(403)  
 
 @app.route("/")
 def index():
@@ -92,3 +83,19 @@ def remove_csp_header(response):
 def set_content_type_options(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
     return response
+
+@app.after_request
+def add_header(response):
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    return response
+
+@app.errorhandler(500)
+def internal_error(error):
+    app.logger.error(f"Server Error: {error}")
+    return render_template('500.html'), 500
+
+@app.errorhandler(404)
+def not_found_error(error):
+    app.logger.error(f"Not Found: {error}")
+    return render_template('404.html'), 404
