@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, abort
 from flask_sitemap import Sitemap
 import requests
 import datetime
@@ -11,6 +11,11 @@ app = Flask(__name__)
 ext = Sitemap(app=app)
 
 Talisman(app)
+
+@app.before_request
+def block_metadata():
+    if request.remote_addr == '169.254.169.254':
+        abort(403)  # Forbidden
 
 @app.route("/")
 def index():
