@@ -92,19 +92,3 @@ def remove_csp_header(response):
 def set_content_type_options(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
     return response
-
-@app.after_request
-def add_header(response):
-    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    return response
-
-@app.errorhandler(500)
-def internal_error(error):
-    app.logger.error(f"Server Error: {error}")
-    return render_template('500.html'), 500
-
-@app.errorhandler(404)
-def not_found_error(error):
-    app.logger.error(f"Not Found: {error}")
-    return render_template('404.html'), 404
