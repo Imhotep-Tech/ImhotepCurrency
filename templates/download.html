@@ -115,26 +115,25 @@ img {
             <button onclick="history.back()" class="btn-black">Back</button>
         </div>
         <div style="text-align:center ;">
-            <h1>Android & PC & Mac</h1>
-            <a href="https://github.com/Kbassem10/ICC-APK/releases/tag/ICC" style="color: #986f07;">
-                <img src="{{ url_for('static', filename='github.png') }}" height="100" width="auto" alt="Github Download">
+            <h1>Windows Download</h1>
+            <a href="https://github.com/Kbassem10/ImhotepCurrency/releases/download/Imhotep_Currency_Convertor/Imhotep-Currency-Convertor-Windows.exe" style="color: #986f07;" onclick="startDownload()">
+                <img src="{{ url_for('static', filename='windows.png') }}" style="height: 100px;" alt="Windows Download Link">
             </a>
-
-            <br>
-            <a href="https://drive.google.com/drive/folders/18WzgnAXo3NyrKLs6R1iJk9X2kcOcujth?usp=drive_link" style="color: #986f07;">
-                <img src="{{ url_for('static', filename='googledrive.png') }}" height="50" width="auto" alt="Google Drive Download">
+            <br><br>
+            <h1>MacOS Download</h1>
+            <a href="https://github.com/Kbassem10/ImhotepCurrency/releases/download/Imhotep_Currency_Convertor/Imhotep-Currency-Convertor-MacOS.dmg" style="color: #986f07;" onclick="startDownload()">
+                <img src="{{ url_for('static', filename='macos.webp') }}" style="height: 100px;" alt="MacOS Download Link">
             </a>
-            <br>
-            <h1>Android Only</h1>
+            <br><br>
+            <h1>Android Download</h1>
             <a href="https://www.amazon.com/dp/B0D9SX43Q4/ref=apps_sf_sta" style="color: #986f07;">
                 <img src="{{ url_for('static', filename='amazon.png') }}" height="50" width="auto" alt="Android Amazon Download">
             </a>
 
             <br>
-
-
+            
             <br>
-            <h1>IOS</h1>
+            <h1>IOS Steps To Download</h1>
             <a id="iosInstall" href="#" style="color: #986f07;">
                 <img src="{{ url_for('static', filename='ios.jpg') }}" height="70" width="auto" alt="Add to Home Screen on iOS">
             </a>
