@@ -74,7 +74,17 @@
             </div>
         {% endif %}
         <br><br>
-
+        <div class="adsense-container centered">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6203820067986412"
+                data-ad-slot="9092047765"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
         <table class="centered">
             <tr>
                 <th>
@@ -439,22 +449,9 @@
         </form>
         </table>
         <br>
-        <div class="adsense-container centered">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-6203820067986412"
-                data-ad-slot="9092047765"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <div class="result-box">
+            {{ res }} 
         </div>
-        {% if result %}
-            <div class="result-box">
-                {{ result }} 
-            </div>
-        {% endif %}
         <br>
         <form action="/" method="GET" style="text-align: center;">
             <input type="submit" value="reset" class="centered" style="background-color: #212529; color: #986f07;">
