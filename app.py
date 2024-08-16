@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, redirect
 from flask_sitemap import Sitemap
 import requests
 import datetime
@@ -12,8 +12,10 @@ ext = Sitemap(app=app)
 def index():
     return render_template("index.html")
 
-@app.route("/calculate", methods=["POST"])
-def calculate():    
+@app.route("/calculate", methods=["POST", "GET"])
+def calculate():
+    if request.method == "GET":
+        return redirect("/")    
     from_currency = request.form.get("from_currency")
     to_currency = request.form.get("to_currency")
     amount = float(request.form.get("amount"))
