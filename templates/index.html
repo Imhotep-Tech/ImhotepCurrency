@@ -14,6 +14,30 @@
         <meta name="google-site-verification" content="5VWhaKmsV5Wzrdko3_Si5vVnmNsMDttsJFA04mFxrsE" />
         <meta name="description" content="Imhotep Currency Converter - Convert currencies with ease.">
         <meta name="keywords" content="currency, converter, exchange rates, Imhotep Currency Converter">
+        <link rel="canonical" href="https://imhotepcc.vercel.app/">
+
+        <meta property="og:title" content="Imhotep Currency Converter">
+        <meta property="og:description" content="Convert currencies with ease.">
+        <meta property="og:image" content="https://imhotepcc.vercel.app/static/icc.jpeg">
+        <meta property="og:url" content="https://imhotepcc.vercel.app/">
+    
+        <meta name="twitter:card" content="https://imhotepcc.vercel.app/static/icc.jpeg">
+        <meta name="twitter:title" content="Imhotep Currency Converter">
+        <meta name="twitter:description" content="Convert currencies with ease.">
+        <meta name="twitter:image" content="https://imhotepcc.vercel.app/static/icc.jpeg">
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-YOUR_TRACKING_ID"></script>   
+    
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+    
+            gtag('config', 'UA-YOUR_TRACKING_ID');   
+    
+        </script>
         <style>
             .bg-color{
                 background-color: #D9D9D9;
@@ -57,18 +81,6 @@
         </div>
         <h1 class="centered">Imhotep Currency Calculator</h1>
 
-        <div class="adsense-container centered">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-6203820067986412"
-                data-ad-slot="9092047765"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
         {% if error %}
             <div class="error-message">
                 {{ error }} 
@@ -77,17 +89,6 @@
         <br><br>
         <div class="centered">
             <img src="{{ url_for('static', filename='icc.jpeg') }}" height="200" width="auto" alt="Imhotep Currency">
-        </div>
-        <div class="adsense-container centered">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-6203820067986412"
-                data-ad-slot="9092047765"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
         <br><br>
         <table class="centered">
@@ -456,17 +457,6 @@
             </tr>
         </form>
         </table>
-        <div class="adsense-container centered">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-6203820067986412"
-                data-ad-slot="9092047765"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
         
     </body>
     <script>
